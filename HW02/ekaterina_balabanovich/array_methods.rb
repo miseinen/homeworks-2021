@@ -1,19 +1,19 @@
 module ArrayMethods
   refine Array do
     def my_map
-      mapped = []
+      new_arr = []
       for i in 0...self.length
-        mapped << yield(self[i]) if block_given?
+        new_arr << yield(self[i]) if block_given?
       end
-      mapped
+      new_arr
     end
 
     def my_select
-      selected = []
+      new_arr = []
       for i in 0...self.length
-        selected << self[i] if block_given? && yield(self[i])
+        new_arr << self[i] if block_given? && yield(self[i])
       end
-      selected
+      new_arr
     end
 
     def my_each
