@@ -10,7 +10,7 @@ def log_format(logs)
     text = %r{/\w+/\d/\w+}.match(line).to_s.upcase
     next if text.empty?
 
-    ip = %r{//(\d{1,3}\.){3}\d{1,3}//}.match(line).to_s
+    ip = %r{(\d{1,3}\.){3}\d{1,3}}.match(line).to_s
     time = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}.match(line).to_s
     puts "#{time} FROM: #{ip} TO: #{text}"
   end
