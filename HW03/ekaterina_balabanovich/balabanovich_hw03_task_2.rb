@@ -9,11 +9,15 @@ LOGS
 
 def log_format(logs)
   logs.each_line do |line|
-    text = %r{/\w+/\d/\w+}.match(line).to_s.upcase
+    text_regex = %r{/\w+/\d/\w+}
+    text = text_regex.match(line).to_s.upcase
     next if text.empty?
 
-    ip = %r{(\d{1,3}\.){3}\d{1,3}}.match(line).to_s
-    time = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}.match(line).to_s
+    ip_regex = %r{(\d{1,3}\.){3}\d{1,3}}
+    ip = ip_regex.match(line).to_s
+
+    time_regex = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}
+    time = time_regex.match(line).to_s
     puts "#{time} FROM: #{ip} TO: #{text}"
   end
 end
