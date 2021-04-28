@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'time'
 
 logs = '2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
 2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
@@ -9,8 +10,18 @@ logs = '2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with act
 2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event'
 
 def duration_count(logs)
-  logs
+  return 0 if logs.lines.count <= 1
+
+  time_differences = []
+  logs.each_line.with_index do |line, i|
+    break if i >= logs.lines.count - 1
+
+    time_regex = %r{\d{4}(-\d{2}){2}[[:space:]](\d{2}:){2}\d{2}[[:punct:]]\d}
+    current_event_time = time_regex.match(line).to_s
+    next_event_time = time_regex.match(logs.lines[i + 1]).to_s
+    time_differences << Time.parse(next_event_time) - Time.parse(current_event_time)
+  end
+  puts time_differences
 end
 
-duration_count(logs
-)
+duration_count(logs)
