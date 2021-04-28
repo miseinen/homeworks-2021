@@ -6,7 +6,11 @@ logs = '10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /grid/2/messages HTT
 10.6.246.101 - - [23/Apr/2018:20:29:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0290'
 
 def error_extract(logs)
-  logs
+  errors = []
+  logs.each_line do |line|
+    errors << line if line.match('error')
+  end
+  puts errors
 end
 
 error_extract(logs)
