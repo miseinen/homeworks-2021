@@ -26,4 +26,12 @@ def duration_count(logs)
   puts time_differences
 end
 
-duration_count(logs)
+def extract_core_log(logs)
+  core_logs = []
+  logs.each_line do |line|
+    core_logs << line if line.downcase.match('calling core')
+  end
+  core_logs.join
+end
+
+duration_count(extract_core_log(logs))
