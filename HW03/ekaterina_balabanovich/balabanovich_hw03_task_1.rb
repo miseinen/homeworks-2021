@@ -8,11 +8,14 @@ logs = <<~LOGS
 LOGS
 
 def error_extract(logs)
-  errors = []
+  error = ''
   logs.each_line do |line|
-    errors << line if line.match('error')
+    if line.match('error')
+      error = line
+      break
+    end
   end
-  puts errors
+  puts error
 end
 
 error_extract(logs)
