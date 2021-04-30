@@ -24,7 +24,7 @@ def duration_count(logs)
     next_event_time = TIME_REGEX.match(logs.lines[i + 1]).to_s
     time_differences << Time.parse(next_event_time) - Time.parse(current_event_time)
   end
-  puts time_differences
+  time_differences
 end
 
 def extract_core_log(logs)

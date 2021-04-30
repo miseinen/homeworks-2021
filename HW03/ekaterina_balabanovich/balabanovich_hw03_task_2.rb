@@ -18,7 +18,7 @@ def log_format(logs)
 
     ip = IP_REGEX.match(line).to_s
     time = TIME_REGEX.match(line).to_s
-    puts "#{time} FROM: #{ip} TO: #{text}"
+    "#{time} FROM: #{ip} TO: #{text}"
   end
 end
 
