@@ -15,7 +15,7 @@ def error_extract(logs)
       break
     end
   end
-  puts error
+ error
 end
 
 error_extract(logs)
