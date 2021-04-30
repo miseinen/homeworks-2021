@@ -28,11 +28,7 @@ def duration_count(logs)
 end
 
 def extract_core_log(logs)
-  core_logs = []
-  logs.each_line do |line|
-    core_logs << line if line.downcase.match('calling core')
-  end
-  core_logs.join
+  logs.each_line.select { |line| line.downcase.match('calling core') }.join
 end
 
 duration_count(extract_core_log(logs))
