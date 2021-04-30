@@ -7,17 +7,17 @@ logs = <<~LOGS
   10.6.246.101 - - [23/Apr/2018:20:31:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0290
 LOGS
 
+TEXT_REGEX = %r{/\w+/\d/\w+}.freeze
+IP_REGEX = %r{(\d{1,3}\.){3}\d{1,3}}.freeze
+TIME_REGEX = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}.freeze
+
 def log_format(logs)
   logs.each_line do |line|
-    text_regex = %r{/\w+/\d/\w+}
-    text = text_regex.match(line).to_s.upcase
+    text = TEXT_REGEX.match(line).to_s.upcase
     next if text.empty?
 
-    ip_regex = %r{(\d{1,3}\.){3}\d{1,3}}
-    ip = ip_regex.match(line).to_s
-
-    time_regex = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}
-    time = time_regex.match(line).to_s
+    ip = IP_REGEX.match(line).to_s
+    time = TIME_REGEX.match(line).to_s
     puts "#{time} FROM: #{ip} TO: #{text}"
   end
 end
