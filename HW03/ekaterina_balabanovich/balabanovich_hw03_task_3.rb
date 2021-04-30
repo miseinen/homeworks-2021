@@ -11,6 +11,8 @@ logs = <<~LOGS
 2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event
 LOGS
 
+TIME_REGEX = %r{\d{4}(-\d{2}){2}[[:space:]](\d{2}:){2}\d{2}[[:punct:]]\d}.freeze
+
 def duration_count(logs)
   return 0 if logs.lines.count <= 1
 
@@ -18,9 +20,8 @@ def duration_count(logs)
   logs.each_line.with_index do |line, i|
     break if i >= logs.lines.count - 1
 
-    time_regex = %r{\d{4}(-\d{2}){2}[[:space:]](\d{2}:){2}\d{2}[[:punct:]]\d}
-    current_event_time = time_regex.match(line).to_s
-    next_event_time = time_regex.match(logs.lines[i + 1]).to_s
+    current_event_time = TIME_REGEX.match(line).to_s
+    next_event_time = TIME_REGEX.match(logs.lines[i + 1]).to_s
     time_differences << Time.parse(next_event_time) - Time.parse(current_event_time)
   end
   puts time_differences
