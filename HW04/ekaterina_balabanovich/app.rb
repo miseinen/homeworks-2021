@@ -27,6 +27,7 @@ new_homework = mentor.add_homework(title: 'HW02', description: 'Do something els
 puts 'Student\'s notifications:'
 puts student.notifications
 student.mark_as_read!
+student.to_check!
 
 puts 'Homeworks before homework rejecting:'
 student.homeworks.each { |a| puts a.title }
