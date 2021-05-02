@@ -7,7 +7,7 @@ class Notification
     @homework = homework
     @note = { new: "You got new homework: '#{@homework.title}' from #{@homework.mentor.surname}",
               done: "You got '#{@homework.title} from #{@homework.student.surname} to check",
-              reject: "You '#{@homework.title}' have been rejected by #{@homework.mentor.surname}",
-              accept: "You have been accepted to '#{@homework.title} by #{@homework.mentor.surname}" }
+              reject: "Your '#{@homework.title}' have been rejected by #{@homework.mentor.surname}",
+              accept: "Your '#{@homework.title} have been accepted by #{@homework.mentor.surname}" }
   end
 end
