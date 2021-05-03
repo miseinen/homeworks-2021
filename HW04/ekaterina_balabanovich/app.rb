@@ -44,7 +44,7 @@ puts 'Mentor\'s homeworks to check:'
 mentor.homeworks.each { |a| puts a.title }
 
 puts 'Mentor read answer:'
-mentor.homeworks.each do |a| 
+mentor.homeworks.each do |a|
   puts a.title
   a.answers.each { |k, v| puts "#{k.surname}: #{v}" }
 end
@@ -65,7 +65,7 @@ puts mentor.notifications
 mentor.mark_as_read!
 
 puts 'Mentor read answer:'
-mentor.homeworks.each do |a| 
+mentor.homeworks.each do |a|
   puts a.title
   a.answers.each { |k, v| puts "#{k.surname}: #{v}" }
 end

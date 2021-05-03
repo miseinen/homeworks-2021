@@ -20,11 +20,11 @@ module TaskHolder
   end
 
   def find_reviewer(member)
-    @reviewers.select{ |a| a == member }.first
+    @reviewers.select { |a| a == member }.first
   end
 
   def find_solver(member)
-    @solvers.select{ |a| a == member }.first
+    @solvers.select { |a| a == member }.first
   end
 
   def notify(members, status)
