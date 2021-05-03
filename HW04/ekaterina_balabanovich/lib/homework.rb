@@ -8,13 +8,14 @@ require_relative 'work_state/work_state_accepted'
 
 class Homework
   attr_reader :title, :description, :student, :mentor, :state, :notification
-  attr_accessor :answer
+  attr_accessor :answers
 
   def initialize(title, description, student, mentor)
     @title = title
     @description = description
     @student = student
     @mentor = mentor
+    @answers = Hash.new
     @notification = Notification.new(self)
     transition_to(WorkStateNew.new)
   end
@@ -25,7 +26,7 @@ class Homework
     @state.process
   end
 
-  def solve(answer)
-    @answer = answer
+  def solve(answer, student)
+    @answers[student] = answer
   end
 end

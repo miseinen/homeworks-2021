@@ -28,7 +28,7 @@ puts 'Mentor\'s homeworks to check:'
 mentor.homeworks.each { |a| puts a.title }
 
 puts 'Mentor read answer:'
-mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answer}' by #{a.student.surname}" }
+mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{a.student.surname}" }
 
 puts 'Mentor rejected homework.'
 mentor.reject_to_work!(homework)
@@ -46,7 +46,7 @@ puts mentor.notifications
 mentor.mark_as_read!
 
 puts 'Mentor read answer:'
-mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answer}' by #{a.student.surname}" }
+mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{a.student.surname}" }
 
 puts 'Mentor accepted homework.'
 mentor.accept!(homework)

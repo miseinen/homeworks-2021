@@ -5,7 +5,7 @@ require_relative 'notification_receiver'
 
 class Student < Member
   def add_answer!(homework, answer)
-    homework.solve(answer)
+    homework.solve(answer, self)
   end
 
   def to_check!(homework)
