@@ -4,6 +4,7 @@ require_relative 'lib/homework'
 require_relative 'lib/notification'
 
 mentor = Mentor.new('Ivan', 'Stepanov')
+mentor_new = Mentor.new('Trevor', 'Dutch')
 student = Student.new('Arina', 'Vesyolkova')
 student_new = Student.new('Stepan', 'Ivanov')
 student.subscribe_to(mentor)
@@ -22,11 +23,14 @@ puts 'New student\'s notifications:'
 puts student_new.notifications
 student_new.mark_as_read!
 
-puts 'Student\'s homeworks to done:'
+puts 'Student\'s homeworks to work:'
 student.homeworks.each { |a| puts a.title }
 
-puts 'New student\'s homeworks to done:'
+puts 'New student\'s homeworks to work:'
 student_new.homeworks.each { |a| puts a.title }
+
+mentor_new.join_to_check(homework)
+puts 'New mentor joined to review homework.'
 
 student_new.add_answer!(homework, 'solving but another way')
 student_new.to_check!(homework)
@@ -35,6 +39,10 @@ puts 'New student finished homework.'
 student.add_answer!(homework, 'solving')
 student.to_check!(homework)
 puts 'Student finished homework.'
+
+puts 'New mentor\s notifications'
+mentor_new.notifications.each { |a| puts a }
+mentor_new.mark_as_read!
 
 puts 'Mentor\'s notifications:'
 mentor.notifications.each { |a| puts a }

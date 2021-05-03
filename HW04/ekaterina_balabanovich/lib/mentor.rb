@@ -24,4 +24,8 @@ class Mentor < Member
     workstate.homework = homework
     workstate.process(student)
   end
+
+  def join_to_check(homework)
+    homework.attach_reviewer(self)
+  end
 end
