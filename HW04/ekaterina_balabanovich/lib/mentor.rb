@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'member'
 require_relative 'notification_receiver'
 
-class Mentor
-  include NotificationReceiver
-  attr_reader :name, :surname
-
-  def initialize(name, surname)
-    @name = name
-    @surname = surname
-    @notifications = []
-  end
-
+class Mentor < Member
   def add_homework(title:, description:, student:)
     Homework.new(title, description, student, self)
   end
