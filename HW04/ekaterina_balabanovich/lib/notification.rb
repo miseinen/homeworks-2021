@@ -5,9 +5,9 @@ class Notification
 
   def initialize(homework)
     @homework = homework
-    @note = { new: "You got new homework: '#{@homework.title}' from #{@homework.mentor.surname}",
-              done: "You got '#{@homework.title} from #{@homework.student.surname} to check",
-              reject: "Your '#{@homework.title}' have been rejected by #{@homework.mentor.surname}",
-              accept: "Your '#{@homework.title} have been accepted by #{@homework.mentor.surname}" }
+    @note = { new: "You got new homework: '#{@homework.title}' to work",
+              done: "You got '#{@homework.title} to check",
+              reject: "Your '#{@homework.title}' have been rejected",
+              accept: "Your '#{@homework.title} have been accepted" }
   end
 end
