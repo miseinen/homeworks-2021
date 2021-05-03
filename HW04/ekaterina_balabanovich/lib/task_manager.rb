@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TaskHolder
+module TaskManager
   attr_accessor :reviewers, :solvers
 
   def attach_reviewer(member)
