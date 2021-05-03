@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
+require_relative 'notification_receiver'
+
 class Student
-  attr_reader :name, :surname, :homeworks, :notifications
+  include NotificationReceiver
+  attr_reader :name, :surname, :homeworks
 
   def initialize(name, surname)
     @name = name
     @surname = surname
     @homeworks = []
     @notifications = []
-  end
-
-  def mark_as_read!
-    @notifications.clear
   end
 
   def add_answer!(homework, answer)
@@ -24,10 +23,6 @@ class Student
 
   def get_homework(homework)
     @homeworks << homework
-  end
-
-  def get_notifications(notification)
-    @notifications << notification
   end
 
   def delete_homework(homework)

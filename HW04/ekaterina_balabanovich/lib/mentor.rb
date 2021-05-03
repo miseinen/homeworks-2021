@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'notification_receiver'
+
 class Mentor
+  include NotificationReceiver
   attr_reader :name, :surname, :students, :notifications
 
   def initialize(name, surname)
@@ -12,14 +15,6 @@ class Mentor
 
   def add_homework(title:, description:, student:)
     Homework.new(title, description, student, self)
-  end
-
-  def get_notification(notification)
-    @notifications << notification
-  end
-
-  def mark_as_read!
-    @notifications.clear
   end
 
   def reject_to_work!(homework)
