@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NotificationReceiver
   attr_reader :notifications
 
