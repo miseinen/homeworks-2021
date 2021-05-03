@@ -2,8 +2,7 @@
 
 class WorkStateDone < WorkState
   def process
-    homework.student.delete_homework(homework)
-    homework.mentor.get_homework(homework)
-    homework.mentor.get_notifications(homework.notification.note[:done])
+    homework.notify(homework.reviewers, :done)
+    homework.reviewers.each { |a| a.get_homework(homework) }
   end
 end

@@ -2,7 +2,7 @@
 
 class WorkStateNew < WorkState
   def process
-    homework.student.get_homework(homework)
-    homework.student.get_notifications(homework.notification.note[:new])
+    homework.notify(homework.solvers, :new)
+    homework.solvers.each { |a| a.get_homework(homework) }
   end
 end

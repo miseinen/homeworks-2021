@@ -4,8 +4,8 @@ require_relative 'member'
 require_relative 'notification_receiver'
 
 class Mentor < Member
-  def add_homework(title:, description:, student:)
-    Homework.new(title, description, student, self)
+  def add_homework(title:, description:)
+    Homework.new(title, description, self)
   end
 
   def reject_to_work!(homework)

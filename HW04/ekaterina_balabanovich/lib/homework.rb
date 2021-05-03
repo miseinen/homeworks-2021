@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'task_holder'
 require_relative 'work_state/work_state'
 require_relative 'work_state/work_state_new'
 require_relative 'work_state/work_state_done'
@@ -7,14 +8,20 @@ require_relative 'work_state/work_state_rejected'
 require_relative 'work_state/work_state_accepted'
 
 class Homework
-  attr_reader :title, :description, :student, :mentor, :state, :notification
+  include TaskHolder
+  attr_reader :title, :description, :state, :notification
   attr_accessor :answers
 
-  def initialize(title, description, student, mentor)
+  def initialize(title, description, mentor)
     @title = title
     @description = description
-    @student = student
-    @mentor = mentor
+
+    @reviewers = []
+    attach_reviewer(mentor)
+
+    @solvers = []
+    mentor.subscribers.each { |a| attach_solver(a) }
+
     @answers = Hash.new
     @notification = Notification.new(self)
     transition_to(WorkStateNew.new)

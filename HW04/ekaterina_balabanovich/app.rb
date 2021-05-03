@@ -5,8 +5,9 @@ require_relative 'lib/notification'
 
 mentor = Mentor.new('Ivan', 'Stepanov')
 student = Student.new('Arina', 'Vesyolkova')
+student.subscribe_to(mentor)
 
-homework = mentor.add_homework(title: 'HW01', description: 'Do something', student: student)
+homework = mentor.add_homework(title: 'HW01', description: 'Do something')
 puts 'Homework have been created.'
 
 puts 'Student\'s notifications:'
@@ -28,7 +29,7 @@ puts 'Mentor\'s homeworks to check:'
 mentor.homeworks.each { |a| puts a.title }
 
 puts 'Mentor read answer:'
-mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{a.student.surname}" }
+mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{student}" }
 
 puts 'Mentor rejected homework.'
 mentor.reject_to_work!(homework)
@@ -46,7 +47,7 @@ puts mentor.notifications
 mentor.mark_as_read!
 
 puts 'Mentor read answer:'
-mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{a.student.surname}" }
+mentor.homeworks.each { |a| puts "#{a.title}: '#{a.answers[student]}' by #{student}" }
 
 puts 'Mentor accepted homework.'
 mentor.accept!(homework)
