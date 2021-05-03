@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WorkStateRejected < WorkState
-  def process
-    homework.notify(homework.solvers, :reject)
+  def process(members)
+    homework.notify(members, :reject)
   end
 end

@@ -24,13 +24,13 @@ class Homework
 
     @answers = Hash.new
     @notification = Notification.new(self)
-    transition_to(WorkStateNew.new)
+    transition_to(WorkStateNew.new, solvers)
   end
 
-  def transition_to(state)
+  def transition_to(state, members)
     @state = state
     @state.homework = self
-    @state.process
+    @state.process(members)
   end
 
   def solve(answer, student)

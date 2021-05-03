@@ -8,15 +8,20 @@ class Mentor < Member
     Homework.new(title, description, self)
   end
 
-  def reject_to_work!(homework)
-    homework.transition_to(WorkStateRejected.new)
+  def reject_to_work!(homework, student)
+    student = homework.find_solver(student)
+    homework.transition_to(WorkStateRejected.new, student)
   end
 
-  def accept!(homework)
-    homework.transition_to(WorkStateAccepted.new)
+  def accept!(homework, student)
+    student = homework.find_solver(student)
+    homework.transition_to(WorkStateAccepted.new, student)
   end
 
   def assign(homework, student)
     homework.attach_solver(student)
+    workstate = WorkStateNew.new
+    workstate.homework = homework
+    workstate.process(student)
   end
 end

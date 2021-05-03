@@ -20,14 +20,18 @@ module TaskHolder
   end
 
   def find_reviewer(member)
-    @reviewers.find(member)
+    @reviewers.select{ |a| a == member }.first
   end
 
   def find_solver(member)
-    @solvers.find(member)
+    @solvers.select{ |a| a == member }.first
   end
 
   def notify(members, status)
-    members.each { |a| a.get_notifications(notification.note[status]) }
+    if members.is_a? Array
+      members.each { |a| a.get_notifications(notification.note[status]) }
+    else
+      members.get_notifications(notification.note[status])
+    end
   end
 end

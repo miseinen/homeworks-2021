@@ -9,6 +9,6 @@ class Student < Member
   end
 
   def to_check!(homework)
-    homework.transition_to(WorkStateDone.new)
+    homework.transition_to(WorkStateDone.new, homework.reviewers)
   end
 end
