@@ -15,4 +15,8 @@ class Mentor < Member
   def accept!(homework)
     homework.transition_to(WorkStateAccepted.new)
   end
+
+  def assign(homework, student)
+    homework.attach_solver(student)
+  end
 end
