@@ -4,7 +4,7 @@ require_relative 'notification_receiver'
 
 class Mentor
   include NotificationReceiver
-  attr_reader :name, :surname, :students, :notifications
+  attr_reader :name, :surname, :students
 
   def initialize(name, surname)
     @name = name
