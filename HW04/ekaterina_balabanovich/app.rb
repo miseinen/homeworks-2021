@@ -7,7 +7,6 @@ mentor_one = Mentor.new('Ivan', 'Stepanov')
 mentor_two = Mentor.new('Trevor', 'Dutch')
 student_one = Student.new('Arina', 'Vesyolkova')
 student_two = Student.new('Stepan', 'Ivanov')
-student_one.subscribe_to(mentor_one)
 
 def puts_with_delimiter(str)
   puts "#{'-' * 30}\n#{str}"
@@ -15,6 +14,9 @@ end
 
 homework_one = mentor_one.add_homework(title: 'HW01', description: 'Do something')
 puts_with_delimiter('HomeworkOne have been created.')
+
+puts_with_delimiter('MentorOne assign HomeworkOne to StudentOne.')
+mentor_one.assign(homework_one, student_one)
 
 puts_with_delimiter('StudentOne\'s notifications:')
 puts student_one.notifications

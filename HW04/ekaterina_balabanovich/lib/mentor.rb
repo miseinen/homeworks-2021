@@ -1,31 +1,34 @@
 # frozen_string_literal: true
 
+require_relative 'task_holder'
 require_relative 'member'
 require_relative 'notification_receiver'
 
 class Mentor < Member
   def add_homework(title:, description:)
-    Homework.new(title, description, self)
+    homework = Homework.new(title, description)
+    TaskHolder.instance.attach_new_homework(homework)
+    TaskHolder.instance.attach_reviewer(self, homework)
+    homework
   end
 
   def reject_to_work!(homework, student)
-    student = homework.find_solver(student)
-    homework.transition_to(WorkStateRejected.new, student)
+    student = TaskHolder.instance.find_solver(student, homework)
+    TaskHolder.instance.transition_to(WorkStateRejected.new, student, homework)
   end
 
   def accept!(homework, student)
-    student = homework.find_solver(student)
-    homework.transition_to(WorkStateAccepted.new, student)
+    student = TaskHolder.instance.find_solver(student, homework)
+    TaskHolder.instance.transition_to(WorkStateAccepted.new, student, homework)
   end
 
   def assign(homework, student)
-    homework.attach_solver(student)
-    workstate = WorkStateNew.new
-    workstate.homework = homework
-    workstate.process(student)
+    TaskHolder.instance.attach_solver(student, homework)
+    solver = TaskHolder.instance.find_solver(student, homework)
+    WorkStateNew.new.process(solver, homework)
   end
 
   def join_to_check(homework)
-    homework.attach_reviewer(self)
+    TaskHolder.instance.attach_reviewer(self, homework)
   end
 end
