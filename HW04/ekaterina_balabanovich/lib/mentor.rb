@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'task_holder'
 require_relative 'member'
-require_relative 'notification_receiver'
+require_relative 'task_holder'
 
 class Mentor < Member
   def add_homework(title:, description:)

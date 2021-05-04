@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'member'
-require_relative 'notification_receiver'
 
 class Student < Member
   def add_answer!(homework, answer)
