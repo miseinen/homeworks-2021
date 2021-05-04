@@ -14,11 +14,11 @@ module MembersManager
   end
 
   def detach_reviewer(member, task)
-    @reviewers[task] << member
+    @reviewers[task].delete(member)
   end
 
   def detach_solver(member, task)
-    @solvers[task] << member
+    @solvers[task].delete(member)
   end
 
   def find_reviewer(member, task)
