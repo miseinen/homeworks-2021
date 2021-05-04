@@ -12,13 +12,13 @@ class Mentor < Member
   end
 
   def reject_to_work!(homework, student)
-    student = WorksManager.instance.find_solver(student, homework)
-    WorksManager.instance.transition_to(WorkStateRejected.new, student, homework)
+    solver = WorksManager.instance.find_solver(student, homework)
+    WorksManager.instance.transition_to(WorkStateRejected.new, solver, homework)
   end
 
   def accept!(homework, student)
-    student = WorksManager.instance.find_solver(student, homework)
-    WorksManager.instance.transition_to(WorkStateAccepted.new, student, homework)
+    solver = WorksManager.instance.find_solver(student, homework)
+    WorksManager.instance.transition_to(WorkStateAccepted.new, solver, homework)
   end
 
   def assign(homework, student)
