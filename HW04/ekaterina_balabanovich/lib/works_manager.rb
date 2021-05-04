@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require 'singleton'
-require_relative 'task_manager'
+require_relative 'members_manager'
 require_relative 'work_state/work_state'
 require_relative 'work_state/work_state_new'
 require_relative 'work_state/work_state_done'
 require_relative 'work_state/work_state_rejected'
 require_relative 'work_state/work_state_accepted'
 
-class TaskHolder
-  include TaskManager
+class WorksManager
+  include MembersManager
   include Singleton
 
   attr_reader :homeworks, :state
@@ -17,7 +17,7 @@ class TaskHolder
   def initialize
     @reviewers = Hash.new
     @solvers = Hash.new
-    @notifications = Hash.new
+    @@notifications = Hash.new
     @@homeworks = []
   end
 
@@ -28,6 +28,14 @@ class TaskHolder
 
   def attach_new_homework(homework)
     @@homeworks << homework
-    @notifications[homework.title] = Notification.new(homework)
+    @@notifications[homework.title] = Notification.new(homework)
+  end
+
+  def notify(members:, task:, status:)
+    if members.is_a? Array
+      members.each { |a| a.get_notifications(@@notifications[task.title].note[status]) }
+    else
+      members.get_notifications(@@notifications[task.title].note[status])
+    end
   end
 end

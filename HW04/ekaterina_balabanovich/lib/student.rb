@@ -8,6 +8,6 @@ class Student < Member
   end
 
   def to_check!(homework)
-    TaskHolder.instance.transition_to(WorkStateDone.new, TaskHolder.instance.reviewers[homework], homework)
+    WorksManager.instance.transition_to(WorkStateDone.new, WorksManager.instance.reviewers[homework], homework)
   end
 end

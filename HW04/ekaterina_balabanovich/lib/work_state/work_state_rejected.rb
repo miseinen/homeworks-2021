@@ -2,6 +2,6 @@
 
 class WorkStateRejected < WorkState
   def process(members, homework)
-    TaskHolder.instance.notify(members: members, task: homework, status: :reject)
+    WorksManager.instance.notify(members: members, task: homework, status: :reject)
   end
 end

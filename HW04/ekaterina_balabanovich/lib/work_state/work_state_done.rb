@@ -2,7 +2,7 @@
 
 class WorkStateDone < WorkState
   def process(members, homework)
-    TaskHolder.instance.notify(members: members, task: homework, status: :done)
+    WorksManager.instance.notify(members: members, task: homework, status: :done)
     members.each { |a| a.get_homework(homework) unless a.homeworks.include?(homework) }
   end
 end

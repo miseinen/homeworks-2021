@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module TaskManager
-  attr_accessor :reviewers, :solvers, :notifications
+module MembersManager
+  attr_accessor :reviewers, :solvers
 
   def attach_reviewer(member, task)
     @reviewers[task] = [] if @reviewers[task].nil?
@@ -27,13 +27,5 @@ module TaskManager
 
   def find_solver(member, task)
     @solvers[task].select { |a| a == member }.first
-  end
-
-  def notify(members:, task:, status:)
-    if members.is_a? Array
-      members.each { |a| a.get_notifications(@notifications[task.title].note[status]) }
-    else
-      members.get_notifications(@notifications[task.title].note[status])
-    end
   end
 end

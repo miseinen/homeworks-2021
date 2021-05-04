@@ -2,7 +2,7 @@
 
 class WorkStateNew < WorkState
   def process(members, homework)
-    TaskHolder.instance.notify(members: members, task: homework, status: :new)
+    WorksManager.instance.notify(members: members, task: homework, status: :new)
     if members.is_a? Array
       members.each { |a| a.get_homework(homework) }
     else
