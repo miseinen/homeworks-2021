@@ -41,10 +41,13 @@ class WorkDemonstration
     accept_work(mentor_one, student_one, homework_one)
     reject_work(mentor_two, student_two, homework_two)
 
+    assign_homework(mentor_two, student_one, homework_two)
+
     read_notifications(student_one)
     read_notifications(student_two)
 
     send_to_check(student_two, homework_two, 'Fixed')
+    send_to_check(student_one, homework_two, 'My solution')
 
     read_notifications(mentor_two)
     show_answers(mentor_two)
