@@ -17,7 +17,7 @@ class WorksManager
   def initialize
     @reviewers = Hash.new
     @solvers = Hash.new
-    @notifications = Hash.new
+    @notifications = []
     @homeworks = []
   end
 
@@ -28,14 +28,20 @@ class WorksManager
 
   def attach_new_homework(homework)
     homeworks << homework
-    notifications[homework.title] = Notification.new(homework)
+    notifications << Notification.new(homework)
   end
 
   def notify(members:, task:, status:)
     if members.is_a? Array
-      members.each { |a| a.add_notifications(notifications[task.title].note[status]) }
+      members.each { |a| a.add_notifications(find_notification(task).note[status]) }
     else
-      members.add_notifications(notifications[task.title].note[status])
+      members.add_notifications(find_notification(task).note[status])
     end
+  end
+
+  private
+
+  def find_notification(homework)
+    notifications.each { |notification| return notification if notification.homework == homework }
   end
 end
