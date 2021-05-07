@@ -11,18 +11,18 @@ class Member
   end
 
   def get_notifications(notification)
-    @notifications << notification
+    notifications << notification
   end
 
   def mark_as_read!
-    @notifications.clear
+    notifications.clear
   end
 
   def add_homework(homework)
-    @homeworks << homework
+    homeworks << homework
   end
 
   def delete_homework(homework)
-    @homeworks.delete(homework)
+    homeworks.delete(homework)
   end
 end

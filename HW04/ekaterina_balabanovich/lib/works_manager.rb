@@ -23,12 +23,12 @@ class WorksManager
 
   def transition_to(state, members, homework)
     @state = state
-    @state.process(members, homework)
+    state.process(members, homework)
   end
 
   def attach_new_homework(homework)
-    @homeworks << homework
-    @notifications[homework.title] = Notification.new(homework)
+    homeworks << homework
+    notifications[homework.title] = Notification.new(homework)
   end
 
   def notify(members:, task:, status:)

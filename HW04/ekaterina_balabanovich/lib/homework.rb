@@ -11,6 +11,6 @@ class Homework
   end
 
   def solve(answer, student)
-    @answers[student] = answer
+    answers[student] = answer
   end
 end
