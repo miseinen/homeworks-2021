@@ -15,8 +15,8 @@ class WorksManager
   attr_reader :homeworks, :state, :notifications
 
   def initialize
-    @reviewers = Hash.new
-    @solvers = Hash.new
+    @reviewers = []
+    @solvers = []
     @notifications = []
     @homeworks = []
   end

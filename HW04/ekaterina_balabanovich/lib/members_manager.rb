@@ -1,31 +1,39 @@
 # frozen_string_literal: true
 
+require_relative 'task_participant'
+
 module MembersManager
   attr_accessor :reviewers, :solvers
 
   def attach_reviewer(member, task)
-    reviewers[task] = [] if @reviewers[task].nil?
-    reviewers[task] << member
+    reviewers << TaskParticipant.new(member, task)
   end
 
   def attach_solver(member, task)
-    solvers[task] = [] if @solvers[task].nil?
-    solvers[task] << member
+    solvers << TaskParticipant.new(member, task)
   end
 
   def detach_reviewer(member, task)
-    reviewers[task].delete(member)
+    reviewers.delete(find_reviewer(member, task))
   end
 
   def detach_solver(member, task)
-    solvers[task].delete(member)
+    solvers.delete(find_solver(member, task))
   end
 
   def find_reviewer(member, task)
-    reviewers[task].select { |a| a == member }.first
+    reviewers.select { |reviewer| reviewer.member == member && reviewer.task == task }.first.member
   end
 
   def find_solver(member, task)
-    solvers[task].select { |a| a == member }.first
+    solvers.select { |solver| solver.member == member && solver.task == task}.first.member
+  end
+
+  def find_reviewers_by_task(task)
+    reviewers.select { |reviewer| reviewer.task == task }.map(&:member)
+  end
+
+  def find_solvers_by_task(task)
+    solvers.select { |solver| solver.task == task }.map(&:member)
   end
 end
