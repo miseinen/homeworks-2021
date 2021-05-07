@@ -7,50 +7,50 @@ require_relative 'notification'
 
 class WorkDemonstration
   def run
-    mentor_one = create_mentor('Ivan', 'Stepanov')
-    mentor_two = create_mentor('Trevor', 'Dutch')
-    student_one = create_student('Arina', 'Vesyolkova')
-    student_two = create_student('Stepan', 'Ivanov')
+    mentor1 = create_mentor('Ivan', 'Stepanov')
+    mentor2 = create_mentor('Trevor', 'Dutch')
+    student1 = create_student('Arina', 'Vesyolkova')
+    student2 = create_student('Stepan', 'Ivanov')
 
-    homework_one = create_homework('HW01', 'Do something', mentor_one)
-    homework_two = create_homework('HW02', 'Resolve please', mentor_one)
+    homework1 = create_homework('HW01', 'Do something', mentor1)
+    homework2 = create_homework('HW02', 'Resolve please', mentor1)
 
-    assign_homework(mentor_one, student_one, homework_one)
+    assign_homework(mentor1, student1, homework1)
 
-    join_to_review(mentor_two, homework_two)
-    assign_homework(mentor_two, student_two, homework_two)
+    join_to_review(mentor2, homework2)
+    assign_homework(mentor2, student2, homework2)
 
-    read_notifications(student_one)
-    read_notifications(student_two)
+    read_notifications(student1)
+    read_notifications(student2)
 
-    show_homeworks(student_one)
-    show_homeworks(student_two)
+    show_homeworks(student1)
+    show_homeworks(student2)
 
-    send_to_check(student_one, homework_one, 'Long story')
-    send_to_check(student_two, homework_two, 'Hoping')
+    send_to_check(student1, homework1, 'Long story')
+    send_to_check(student2, homework2, 'Hoping')
 
-    read_notifications(mentor_one)
-    read_notifications(mentor_two)
+    read_notifications(mentor1)
+    read_notifications(mentor2)
 
-    show_homeworks(mentor_one)
-    show_homeworks(mentor_two)
+    show_homeworks(mentor1)
+    show_homeworks(mentor2)
 
-    show_answers(mentor_one)
-    show_answers(mentor_two)
+    show_answers(mentor1)
+    show_answers(mentor2)
 
-    accept_work(mentor_one, student_one, homework_one)
-    reject_work(mentor_two, student_two, homework_two)
+    accept_work(mentor1, student1, homework1)
+    reject_work(mentor2, student2, homework2)
 
-    assign_homework(mentor_two, student_one, homework_two)
+    assign_homework(mentor2, student1, homework2)
 
-    read_notifications(student_one)
-    read_notifications(student_two)
+    read_notifications(student1)
+    read_notifications(student2)
 
-    send_to_check(student_two, homework_two, 'Fixed')
-    send_to_check(student_one, homework_two, 'My solution')
+    send_to_check(student2, homework2, 'Fixed')
+    send_to_check(student1, homework2, 'My solution')
 
-    read_notifications(mentor_two)
-    show_answers(mentor_two)
+    read_notifications(mentor2)
+    show_answers(mentor2)
   end
 
   def create_mentor(name, surname)
