@@ -93,7 +93,7 @@ class WorkDemonstration
     puts_with_delimiter("#{member.class} #{member.surname} see answers")
     member.homeworks.each do |a|
       puts a.title
-      a.answers.each { |student, answer| puts "#{student.surname}: #{answer}" }
+      a.answers.each(&:show)
     end
   end
 
