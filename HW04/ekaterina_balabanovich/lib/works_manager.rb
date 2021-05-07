@@ -12,13 +12,13 @@ class WorksManager
   include MembersManager
   include Singleton
 
-  attr_reader :homeworks, :state
+  attr_reader :homeworks, :state, :notifications
 
   def initialize
     @reviewers = Hash.new
     @solvers = Hash.new
-    @@notifications = Hash.new
-    @@homeworks = []
+    @notifications = Hash.new
+    @homeworks = []
   end
 
   def transition_to(state, members, homework)
@@ -27,15 +27,15 @@ class WorksManager
   end
 
   def attach_new_homework(homework)
-    @@homeworks << homework
-    @@notifications[homework.title] = Notification.new(homework)
+    @homeworks << homework
+    @notifications[homework.title] = Notification.new(homework)
   end
 
   def notify(members:, task:, status:)
     if members.is_a? Array
-      members.each { |a| a.get_notifications(@@notifications[task.title].note[status]) }
+      members.each { |a| a.get_notifications(@notifications[task.title].note[status]) }
     else
-      members.get_notifications(@@notifications[task.title].note[status])
+      members.get_notifications(@notifications[task.title].note[status])
     end
   end
 end
