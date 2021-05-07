@@ -80,20 +80,20 @@ class WorkDemonstration
 
   def read_notifications(member)
     puts_with_delimiter("#{member.class} #{member.surname}\'s notifications:")
-    member.notifications.each { |a| puts a }
+    member.notifications.each { |notification| puts notification }
     member.mark_as_read!
   end
 
   def show_homeworks(member)
     puts_with_delimiter("#{member.class} #{member.surname}\'s homeworks (to work/to check):")
-    member.homeworks.each { |a| puts a.title }
+    member.homeworks.each { |homework| puts homework.title }
   end
 
   def show_answers(member)
     puts_with_delimiter("#{member.class} #{member.surname} see answers")
     member.homeworks.each do |a|
       puts a.title
-      a.answers.each { |k, v| puts "#{k.surname}: #{v}" }
+      a.answers.each { |student, answer| puts "#{student.surname}: #{answer}" }
     end
   end
 
