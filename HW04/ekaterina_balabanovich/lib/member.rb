@@ -10,7 +10,7 @@ class Member
     @notifications = []
   end
 
-  def get_notifications(notification)
+  def add_notifications(notification)
     notifications << notification
   end
 

@@ -33,9 +33,9 @@ class WorksManager
 
   def notify(members:, task:, status:)
     if members.is_a? Array
-      members.each { |a| a.get_notifications(notifications[task.title].note[status]) }
+      members.each { |a| a.add_notifications(notifications[task.title].note[status]) }
     else
-      members.get_notifications(notifications[task.title].note[status])
+      members.add_notifications(notifications[task.title].note[status])
     end
   end
 end
