@@ -4,7 +4,7 @@ module WorkState
   class Done < Base
     def process(members, homework)
       WorksManager.instance.notify(members: members, task: homework, status: :done)
-      members.each { |a| a.add_homework(homework) unless a.homeworks.include?(homework) }
+      members.each { |member| member.add_homework(homework) unless member.homeworks.include?(homework) }
     end
   end
 end

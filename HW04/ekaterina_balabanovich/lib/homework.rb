@@ -19,7 +19,7 @@ class Homework
   private
 
   def find_answer_by_student(student)
-    answers.each { |answer| return answer if answer.student == student }
+    answers.select { |answer| answer.student == student }.first
   end
 
   def delete_existed_answer(student)

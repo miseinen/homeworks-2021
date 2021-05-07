@@ -26,7 +26,7 @@ module MembersManager
   end
 
   def find_solver(member, task)
-    solvers.select { |solver| solver.member == member && solver.task == task}.first.member
+    solvers.select { |solver| solver.member == member && solver.task == task }.first.member
   end
 
   def find_reviewers_by_task(task)

@@ -33,7 +33,7 @@ class WorksManager
 
   def notify(members:, task:, status:)
     if members.is_a? Array
-      members.each { |a| a.add_notifications(find_notification(task).note[status]) }
+      members.each { |member| member.add_notifications(find_notification(task).note[status]) }
     else
       members.add_notifications(find_notification(task).note[status])
     end
@@ -42,6 +42,6 @@ class WorksManager
   private
 
   def find_notification(homework)
-    notifications.each { |notification| return notification if notification.homework == homework }
+    notifications.select { |notification| notification.homework == homework }.first
   end
 end

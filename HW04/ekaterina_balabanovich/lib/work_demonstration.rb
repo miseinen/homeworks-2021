@@ -91,9 +91,9 @@ class WorkDemonstration
 
   def show_answers(member)
     puts_with_delimiter("#{member.class} #{member.surname} see answers")
-    member.homeworks.each do |a|
-      puts a.title
-      a.answers.each(&:show)
+    member.homeworks.each do |homework|
+      puts homework.title
+      homework.answers.each(&:show)
     end
   end
 

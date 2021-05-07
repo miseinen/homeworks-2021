@@ -5,7 +5,7 @@ module WorkState
     def process(members, homework)
       WorksManager.instance.notify(members: members, task: homework, status: :new)
       if members.is_a? Array
-        members.each { |a| a.add_homework(homework) }
+        members.each { |member| member.add_homework(homework) }
       else
         members.add_homework(homework)
       end
