@@ -4,7 +4,7 @@ require_relative 'member'
 require_relative 'works_manager'
 
 class Mentor < Member
-  def add_homework(title:, description:)
+  def create_homework(title:, description:)
     homework = Homework.new(title, description)
     WorksManager.instance.attach_new_homework(homework)
     WorksManager.instance.attach_reviewer(self, homework)

@@ -18,7 +18,7 @@ class Member
     @notifications.clear
   end
 
-  def get_homework(homework)
+  def add_homework(homework)
     @homeworks << homework
   end
 

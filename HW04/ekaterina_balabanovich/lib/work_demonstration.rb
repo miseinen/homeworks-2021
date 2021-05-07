@@ -12,8 +12,8 @@ class WorkDemonstration
     student1 = create_student('Arina', 'Vesyolkova')
     student2 = create_student('Stepan', 'Ivanov')
 
-    homework1 = create_homework('HW01', 'Do something', mentor1)
-    homework2 = create_homework('HW02', 'Resolve please', mentor1)
+    homework1 = add_homework('HW01', 'Do something', mentor1)
+    homework2 = add_homework('HW02', 'Resolve please', mentor1)
 
     assign_homework(mentor1, student1, homework1)
 
@@ -63,9 +63,9 @@ class WorkDemonstration
     Student.new(name, surname)
   end
 
-  def create_homework(title, description, mentor)
+  def add_homework(title, description, mentor)
     puts_with_delimiter("Homework #{title} has been created by #{mentor.surname}")
-    mentor.add_homework(title: title, description: description)
+    mentor.create_homework(title: title, description: description)
   end
 
   def assign_homework(mentor, student, homework)
