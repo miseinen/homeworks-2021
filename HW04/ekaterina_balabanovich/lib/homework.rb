@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Homework
-  attr_reader :title, :description
-  attr_accessor :answers
+  attr_reader :title, :description, :answers
 
   def initialize(title, description)
     @title = title
