@@ -2,11 +2,11 @@
 
 require 'singleton'
 require_relative 'members_manager'
-require_relative 'work_state/work_state'
-require_relative 'work_state/work_state_new'
-require_relative 'work_state/work_state_done'
-require_relative 'work_state/work_state_rejected'
-require_relative 'work_state/work_state_accepted'
+require_relative 'work_state/base'
+require_relative 'work_state/new'
+require_relative 'work_state/done'
+require_relative 'work_state/rejected'
+require_relative 'work_state/accepted'
 
 class WorksManager
   include MembersManager
