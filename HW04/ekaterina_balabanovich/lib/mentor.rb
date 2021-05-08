@@ -6,28 +6,28 @@ require_relative 'works_manager'
 class Mentor < Member
   def create_homework(title:, description:)
     homework = Homework.new(title, description)
-    WorksManager.instance.attach_new_homework(homework)
-    WorksManager.instance.attach_reviewer(self, homework)
+    HomeworksManager.instance.attach_new_homework(homework)
+    HomeworksManager.instance.attach_reviewer(self, homework)
     homework
   end
 
   def reject_to_work!(homework, student)
-    solver = WorksManager.instance.find_solver(student, homework)
-    WorksManager.instance.transition_to(WorkState::Rejected.new, solver, homework)
+    solver = HomeworksManager.instance.find_solver(student, homework)
+    HomeworksManager.instance.transition_to(WorkState::Rejected.new, solver, homework)
   end
 
   def accept!(homework, student)
-    solver = WorksManager.instance.find_solver(student, homework)
-    WorksManager.instance.transition_to(WorkState::Accepted.new, solver, homework)
+    solver = HomeworksManager.instance.find_solver(student, homework)
+    HomeworksManager.instance.transition_to(WorkState::Accepted.new, solver, homework)
   end
 
   def assign(homework, student)
-    WorksManager.instance.attach_solver(student, homework)
-    solver = WorksManager.instance.find_solver(student, homework)
+    HomeworksManager.instance.attach_solver(student, homework)
+    solver = HomeworksManager.instance.find_solver(student, homework)
     WorkState::New.new.process(solver, homework)
   end
 
   def join_to_check(homework)
-    WorksManager.instance.attach_reviewer(self, homework)
+    HomeworksManager.instance.attach_reviewer(self, homework)
   end
 end

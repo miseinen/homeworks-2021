@@ -8,7 +8,7 @@ require_relative 'work_state/done'
 require_relative 'work_state/rejected'
 require_relative 'work_state/accepted'
 
-class WorksManager
+class HomeworksManager
   include MembersManager
   include Singleton
 
