@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module WorkState
+module HomeworkState
   class Done < Base
     def process(members, homework)
       HomeworksManager.instance.notify(members: members, task: homework, status: :done)

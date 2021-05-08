@@ -2,11 +2,11 @@
 
 require 'singleton'
 require_relative 'members_manager'
-require_relative 'work_state/base'
-require_relative 'work_state/new'
-require_relative 'work_state/done'
-require_relative 'work_state/rejected'
-require_relative 'work_state/accepted'
+require_relative 'homework_state/base'
+require_relative 'homework_state/new'
+require_relative 'homework_state/done'
+require_relative 'homework_state/rejected'
+require_relative 'homework_state/accepted'
 
 class HomeworksManager
   include MembersManager

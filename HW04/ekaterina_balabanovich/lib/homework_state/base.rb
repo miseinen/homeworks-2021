@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module WorkState
+module HomeworkState
   class Base
     def process(members, homework); end
   end
