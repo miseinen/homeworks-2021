@@ -30,10 +30,6 @@ class HomeworksManager
   end
 
   def notify(members:, homework:, status:)
-    if members.is_a? Array
-      members.each { |member| member.add_notifications(Notification.new(homework, status).message) }
-    else
-      members.add_notifications(Notification.new(homework, status).message)
-    end
+    members.each { |member| member.add_notifications(Notification.new(homework, status).message) }
   end
 end

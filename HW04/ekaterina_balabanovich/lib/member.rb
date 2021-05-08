@@ -25,4 +25,8 @@ class Member
   def delete_homework(homework)
     homeworks.delete(homework)
   end
+
+  def to_members
+    [self]
+  end
 end
