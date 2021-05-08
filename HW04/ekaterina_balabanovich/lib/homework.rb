@@ -18,14 +18,14 @@ class Homework
 
   private
 
-  def find_answer_by_student(student)
-    answers.select { |answer| answer.student == student }.first
-  end
-
   def delete_existed_answer(student)
     existed_answer = find_answer_by_student(student)
     return if existed_answer.nil?
 
     answers.delete(existed_answer)
+  end
+
+  def find_answer_by_student(student)
+    answers.select { |answer| answer.student == student }.first
   end
 end
