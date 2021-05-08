@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'member'
-require_relative 'works_manager'
+require_relative 'homeworks_manager'
 
 class Mentor < Member
   def create_homework(title:, description:)
