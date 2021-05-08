@@ -3,7 +3,7 @@
 module HomeworkState
   class Rejected < Base
     def process(members, homework)
-      HomeworksManager.instance.notify(members: members, task: homework, status: :reject)
+      HomeworksManager.instance.notify(members: members, homework: homework, status: :reject)
     end
   end
 end

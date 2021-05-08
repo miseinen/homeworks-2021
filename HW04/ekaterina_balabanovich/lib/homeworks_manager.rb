@@ -29,11 +29,11 @@ class HomeworksManager
     homeworks << homework
   end
 
-  def notify(members:, task:, status:)
+  def notify(members:, homework:, status:)
     if members.is_a? Array
-      members.each { |member| member.add_notifications(Notification.new(task, status).message) }
+      members.each { |member| member.add_notifications(Notification.new(homework, status).message) }
     else
-      members.add_notifications(Notification.new(task, status).message)
+      members.add_notifications(Notification.new(homework, status).message)
     end
   end
 end

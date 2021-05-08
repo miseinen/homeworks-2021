@@ -8,7 +8,7 @@ class Student < Member
   end
 
   def to_check!(homework)
-    reviewers = HomeworksManager.instance.find_reviewers_by_task(homework)
+    reviewers = HomeworksManager.instance.find_reviewers_by_homework(homework)
     HomeworksManager.instance.transition_to(HomeworkState::Done.new, reviewers, homework)
   end
 end
