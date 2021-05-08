@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
 class Notification
-  attr_reader :homework, :note
+  attr_reader :homework, :status
 
-  def initialize(homework)
+  def initialize(homework, status)
     @homework = homework
-    @note = { new: new_message,
-              done: done_message,
-              reject: reject_message,
-              accept: accept_message }
+    @status = status
+  end
+
+  def message
+    {
+      new: new_message,
+      done: done_message,
+      reject: reject_message,
+      accept: accept_message
+    }[status]
   end
 
   def new_message
