@@ -17,6 +17,8 @@ class Notification
     }[status]
   end
 
+  private
+
   def new_message
     "You got new homework: '#{homework.title}' to work"
   end
