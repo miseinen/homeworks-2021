@@ -15,9 +15,6 @@ describe ArrayMethods do
       end
     end
     context 'when array is not empty' do
-      it 'should return array' do
-        expect(array.my_map(&:odd?)).to eq([true, false, true])
-      end
       it 'should return the same number of elements as the original array' do
         expect(array.my_map(&:odd?).count).to eq(array.count)
       end
@@ -47,7 +44,7 @@ describe ArrayMethods do
       end
     end
     context 'when array is not empty' do
-      it 'should return array' do
+      it 'should return only elements which satisfy the condition' do
         expect(array.my_select(&:odd?)).to eq([1, 3])
       end
     end
@@ -77,9 +74,6 @@ describe ArrayMethods do
       end
     end
     context 'when array is not empty' do
-      it 'should return array' do
-        expect(array.my_each(&:odd?)).to eq([true, false, true])
-      end
       it 'should return the same number of elements as the original array' do
         expect(array.my_each(&:odd?).count).to eq(array.count)
       end
