@@ -24,7 +24,7 @@ module ArrayMethods
       return unless block_given?
 
       for i in 0...self.length
-        yield(self[i])
+        self[i] = yield(self[i])
       end
       self
     end
