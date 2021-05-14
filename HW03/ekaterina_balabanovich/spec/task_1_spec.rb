@@ -2,7 +2,7 @@
 
 require_relative '../balabanovich_hw03_task_1'
 
-describe 'Task1' do
+RSpec.describe 'Task1' do
   let(:one_error_logs) do
     "10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0498
     10.6.246.101 - - [23/Apr/2018:20:30:42 +0300] 'POST /test/2/run HTTP/1.1' 200 - 0.2277

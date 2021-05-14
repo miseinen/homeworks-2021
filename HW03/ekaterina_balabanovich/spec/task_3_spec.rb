@@ -2,7 +2,7 @@
 
 require_relative '../balabanovich_hw03_task_3'
 
-describe 'Task3' do
+RSpec.describe 'Task3' do
   let(:logs) do
     "2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
     2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101

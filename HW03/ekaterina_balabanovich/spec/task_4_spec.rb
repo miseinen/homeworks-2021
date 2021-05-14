@@ -2,7 +2,7 @@
 
 require_relative '../balabanovich_hw03_task_4'
 
-describe 'Task4' do
+RSpec.describe 'Task4' do
   describe '#letter_digit_count' do
     context 'when string is empty' do
       it 'should return answer with 0' do
