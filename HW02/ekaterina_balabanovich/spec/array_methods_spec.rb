@@ -25,10 +25,8 @@ describe ArrayMethods do
       end
     end
     context 'when block is given' do
-      it 'should return sum of each elements if block uses sum' do
+      it 'should return array changed by block' do
         expect(array.my_map { |a| a + 1 }).to eq([2, 3, 4])
-      end
-      it 'should return multiplication of elements if block uses multiplication' do
         expect(array.my_map { |a| a * 2 }).to eq([2, 4, 6])
       end
       it 'should not change the original array' do
@@ -43,23 +41,15 @@ describe ArrayMethods do
         expect(empty_array.my_select(&:odd?)).to be_empty
       end
     end
-    context 'when array is not empty' do
-      it 'should return only elements which satisfy the condition' do
-        expect(array.my_select(&:odd?)).to eq([1, 3])
-      end
-    end
     context 'when block is not given' do
       it 'should return nil' do
         expect(array.my_select).to be nil
       end
     end
     context 'when block is given' do
-      it 'should return only odd numbers if block checks odd numbers' do
+      it 'should return only elements which satisfy the condition' do
         expect(array.my_select(&:odd?)).to eq([1, 3])
-      end
-      it 'should return only zero numbers if block checks zero numbers' do
-        array = [0, 2, 0, 4]
-        expect(array.my_select(&:zero?)).to eq([0, 0])
+        expect(array.my_select(&:zero?)).to eq([])
       end
       it 'should not change the original array' do
         array.my_select { |a| a + 1 }
@@ -84,11 +74,9 @@ describe ArrayMethods do
       end
     end
     context 'when block is given' do
-      it 'should return sum of each elements if block uses sum' do
+      it 'should return array changed by block' do
         expect(array.my_each { |a| a + 1 }).to eq([2, 3, 4])
-      end
-      it 'should return multiplication of elements if block uses multiplication' do
-        expect(array.my_each { |a| a * 2 }).to eq([2, 4, 6])
+        expect(array.my_each { |a| a * 2 }).to eq([4, 6, 8])
       end
       it 'should change the original array' do
         array.my_each { |a| a + 1 }
