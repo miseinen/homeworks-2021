@@ -4,7 +4,7 @@ require_relative '../array_methods'
 
 using ArrayMethods
 
-describe ArrayMethods do
+RSpec.describe ArrayMethods do
   let(:empty_array) { [] }
   let(:array) { [1, 2, 3] }
 
