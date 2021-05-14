@@ -33,5 +33,10 @@ describe 'Task2' do
         expect(log_format(empty_logs)).to eq([])
       end
     end
+    context 'when logs are not string' do
+      it 'raises NoMethodError' do
+        expect { log_format(12) }.to raise_error NoMethodError
+      end
+    end
   end
 end

@@ -24,7 +24,7 @@ describe 'Task1' do
     10.6.246.101 - - [23/Apr/2018:20:31:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0290"
   end
 
-  let(:no_logs) { ''}
+  let(:no_logs) { '' }
 
   describe '#error_extract' do
     context 'when one error occurred' do
@@ -44,13 +44,18 @@ describe 'Task1' do
       end
     end
     context 'when no errors occurred' do
-      it 'should return empty string' do
+      it 'should return an empty string' do
         expect(error_extract(no_errors_logs)).to eq('')
       end
     end
     context 'when no logs' do
-      it 'should return empty string' do
+      it 'should return an empty string' do
         expect(error_extract(no_errors_logs)).to eq('')
+      end
+    end
+    context 'when logs are not string' do
+      it 'raises NoMethodError' do
+        expect { error_extract(12) }.to raise_error NoMethodError
       end
     end
   end

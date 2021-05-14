@@ -31,6 +31,11 @@ describe 'Task3' do
         expect(extract_core_log(empty_logs)).to eq('')
       end
     end
+    context 'when logs are not string' do
+      it 'raises NoMethodError' do
+        expect { extract_core_log(12) }.to raise_error NoMethodError
+      end
+    end
   end
   describe '#duration_count' do
     context 'when logs are not empty' do
@@ -48,6 +53,11 @@ describe 'Task3' do
     context 'when logs are empty' do
       it 'should return 0' do
         expect(duration_count(empty_logs)).to eq(0)
+      end
+    end
+    context 'when logs are not string' do
+      it 'raises NoMethodError' do
+        expect { duration_count(12) }.to raise_error NoMethodError
       end
     end
   end
