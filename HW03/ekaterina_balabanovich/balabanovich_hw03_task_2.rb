@@ -12,14 +12,16 @@ IP_REGEX = %r{(\d{1,3}\.){3}\d{1,3}}.freeze
 TIME_REGEX = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}.freeze
 
 def log_format(logs)
+  formatted_logs = []
   logs.each_line do |line|
     text = TEXT_REGEX.match(line).to_s.upcase
     next if text.empty?
 
     ip = IP_REGEX.match(line).to_s
     time = TIME_REGEX.match(line).to_s
-    "#{time} FROM: #{ip} TO: #{text}"
+    formatted_logs << "#{time} FROM: #{ip} TO: #{text}"
   end
+  formatted_logs
 end
 
-log_format(logs)
+puts log_format(logs)
