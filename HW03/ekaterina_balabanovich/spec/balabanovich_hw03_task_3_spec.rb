@@ -4,13 +4,15 @@ require_relative '../balabanovich_hw03_task_3'
 
 RSpec.describe 'Task3' do
   let(:logs) do
-    "2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-    2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
-    2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
-    2018-04-23 17:18:19.5 ubuntu-xenial[14319] Debug - monitoring grid communication health
-    2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
-    2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
-    2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event"
+    <<~LOGS
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
+      2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
+      2018-04-23 17:18:19.5 ubuntu-xenial[14319] Debug - monitoring grid communication health
+      2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
+      2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
+      2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event
+    LOGS
   end
 
   let(:empty_logs) { '' }
@@ -37,6 +39,7 @@ RSpec.describe 'Task3' do
       end
     end
   end
+
   describe '#duration_count' do
     context 'when logs are not empty' do
       context 'when logs contain one line' do
