@@ -14,13 +14,15 @@ RSpec.describe 'Task1' do
         LOGS
       end
 
-      it 'should return one line' do
+      it 'returns one line' do
         expect(error_extract(one_error_logs).lines.count).to eq(1)
       end
-      it 'should include "error" in returned line' do
+
+      it 'includes "error" in returned line' do
         expect(error_extract(one_error_logs).include?('error')).to be true
       end
     end
+
     context 'when several errors occurred' do
       let(:several_errors_logs) do
         <<~LOGS
@@ -32,13 +34,15 @@ RSpec.describe 'Task1' do
         LOGS
       end
 
-      it 'should return one line' do
+      it 'returns one line' do
         expect(error_extract(several_errors_logs).lines.count).to eq(1)
       end
-      it 'should include "error" in returned line' do
+
+      it 'includes "error" in returned line' do
         expect(error_extract(several_errors_logs).include?('error')).to be true
       end
     end
+
     context 'when no errors occurred' do
       let(:no_errors_logs) do
         <<~LOGS
@@ -48,17 +52,19 @@ RSpec.describe 'Task1' do
         LOGS
       end
 
-      it 'should return an empty string' do
+      it 'returns an empty string' do
         expect(error_extract(no_errors_logs)).to eq('')
       end
     end
+
     context 'when no logs' do
       let(:no_logs) { '' }
 
-      it 'should return an empty string' do
+      it 'returns an empty string' do
         expect(error_extract(no_logs)).to eq('')
       end
     end
+
     context 'when logs are not string' do
       it 'raises NoMethodError' do
         expect { error_extract(12) }.to raise_error NoMethodError

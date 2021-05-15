@@ -23,16 +23,18 @@ RSpec.describe 'Task3' do
 
   describe '#extract_core_log' do
     context 'when logs are not empty' do
-      it 'should return lines that include "calling core"' do
+      it 'returns lines that include "calling core"' do
         first_extracted_line = extract_core_log(logs).lines.first.downcase
         expect(first_extracted_line.include?('calling core')).to be true
       end
     end
+
     context 'when logs are empty' do
-      it 'should return an empty string' do
+      it 'returns an empty string' do
         expect(extract_core_log(empty_logs)).to eq('')
       end
     end
+
     context 'when logs are not string' do
       it 'raises NoMethodError' do
         expect { extract_core_log(12) }.to raise_error NoMethodError
@@ -41,23 +43,24 @@ RSpec.describe 'Task3' do
   end
 
   describe '#duration_count' do
-    context 'when logs are not empty' do
-      context 'when logs contain one line' do
-        it 'should return 0' do
-          expect(duration_count(one_line_logs)).to eq(0)
-        end
-      end
-      context 'when logs contain more lines' do
-        it 'should return duration between events' do
-          expect(duration_count(extract_core_log(logs)).first).to eq(49.1)
-        end
+    context 'when logs contain one line' do
+      it 'returns 0' do
+        expect(duration_count(one_line_logs)).to eq(0)
       end
     end
+
+    context 'when logs contain more than one lines' do
+      it 'returns duration between events' do
+        expect(duration_count(extract_core_log(logs)).first).to eq(49.1)
+      end
+    end
+
     context 'when logs are empty' do
-      it 'should return 0' do
+      it 'returns 0' do
         expect(duration_count(empty_logs)).to eq(0)
       end
     end
+
     context 'when logs are not string' do
       it 'raises NoMethodError' do
         expect { duration_count(12) }.to raise_error NoMethodError
