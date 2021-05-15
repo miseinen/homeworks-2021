@@ -8,7 +8,7 @@ RSpec.describe ArrayMethods do
   let(:empty_array) { [] }
   let(:array) { [1, 2, 3] }
 
-  describe '#my_map' do
+  describe '.my_map' do
     context 'when array is empty' do
       it 'is empty' do
         expect(empty_array.my_map(&:odd?)).to be_empty
@@ -39,7 +39,7 @@ RSpec.describe ArrayMethods do
     end
   end
 
-  describe '#my_select' do
+  describe '.my_select' do
     context 'when array is empty' do
       it 'is empty' do
         expect(empty_array.my_select(&:odd?)).to be_empty
@@ -64,7 +64,7 @@ RSpec.describe ArrayMethods do
     end
   end
 
-  describe '#my_each' do
+  describe '.my_each' do
     context 'when array is empty' do
       it 'is empty' do
         expect(empty_array.my_each(&:odd?)).to be_empty
