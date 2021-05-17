@@ -6,7 +6,7 @@ RSpec.describe 'Task2' do
   describe '#log_format' do
     subject { log_format(logs) }
 
-    context 'when logs are not empty' do
+    context 'when logs contain correct log messages' do
       let(:logs) do
         <<~LOGS
           10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0498
@@ -23,6 +23,18 @@ RSpec.describe 'Task2' do
       end
 
       it { is_expected.to eq(expected_output) }
+    end
+
+    context 'when logs contain only error messages' do
+      let(:logs) do
+        <<~LOGS
+          2018-04-23 20:30:42: SSL ERROR, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSL: System error: Undefined error: 0 - 0>
+          2018-04-23 20:30:42: SSL ERROR, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSL: System error: Undefined error: 0 - 0>
+          2018-04-23 20:30:42: SSL ERROR, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSL: System error: Undefined error: 0 - 0>
+        LOGS
+      end
+
+      it { is_expected.to eq([]) }
     end
 
     context 'when logs are empty' do
