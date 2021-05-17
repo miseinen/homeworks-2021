@@ -17,10 +17,10 @@ def log_format(logs)
   formatted_logs = []
   logs.each_line do |line|
     text = TEXT_REGEX.match(line).to_s.upcase
-    next if text.empty?
-
     ip = IP_REGEX.match(line).to_s
     time = TIME_REGEX.match(line).to_s
+    next if text.empty? || ip.empty? || time.empty?
+
     formatted_logs << "#{time} FROM: #{ip} TO: #{text}"
   end
   formatted_logs
