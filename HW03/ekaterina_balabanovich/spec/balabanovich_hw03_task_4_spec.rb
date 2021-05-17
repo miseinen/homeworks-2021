@@ -21,7 +21,7 @@ RSpec.describe 'Task4' do
     context 'when argument is not string' do
       subject { -> { letter_digit_count(12) } }
 
-      it { is_expected.to raise_error NoMethodError }
+      it { is_expected.to raise_error ArgumentError }
     end
   end
 end

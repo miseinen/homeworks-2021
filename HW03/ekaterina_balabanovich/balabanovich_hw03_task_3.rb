@@ -30,6 +30,8 @@ def duration_count(logs)
 end
 
 def extract_core_log(logs)
+  raise ArgumentError unless logs.is_a? String
+
   logs.each_line.select { |line| line.downcase.match('calling core') }.join
 end
 

@@ -62,7 +62,7 @@ RSpec.describe 'Task1' do
     context 'when logs are not string' do
       subject { -> { error_extract(12) } }
 
-      it { is_expected.to raise_error NoMethodError }
+      it { is_expected.to raise_error ArgumentError }
     end
   end
 end

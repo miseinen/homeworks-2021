@@ -12,6 +12,8 @@ IP_REGEX = %r{(\d{1,3}\.){3}\d{1,3}}.freeze
 TIME_REGEX = %r{\d{1,2}/\w+/\d{4}(:\d{2}){3}[[:space:]]\+\d{4}}.freeze
 
 def log_format(logs)
+  raise ArgumentError unless logs.is_a? String
+
   formatted_logs = []
   logs.each_line do |line|
     text = TEXT_REGEX.match(line).to_s.upcase
