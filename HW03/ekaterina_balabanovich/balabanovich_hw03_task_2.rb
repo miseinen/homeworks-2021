@@ -23,6 +23,7 @@ def log_format(logs)
 
     formatted_logs << "#{time} FROM: #{ip} TO: #{text}"
   end
+  formatted_logs.uniq! if formatted_logs.count > 0
   formatted_logs
 end
 
