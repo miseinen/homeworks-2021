@@ -4,22 +4,24 @@ require_relative '../balabanovich_hw03_task_4'
 
 RSpec.describe 'Task4' do
   describe '#letter_digit_count' do
+    subject { letter_digit_count(string) }
+
     context 'when string is empty' do
-      it 'returns answer with 0' do
-        expect(letter_digit_count('')).to eq('letters: 0, digits: 0')
-      end
+      let(:string) { '' }
+
+      it { is_expected.to eq('letters: 0, digits: 0') }
     end
 
-    context 'when string is not empty' do
-      it 'returns letters, digits count' do
-        expect(letter_digit_count('hel!0')).to eq('letters: 3, digits: 1')
-      end
+    context 'when string is "hel!0"' do
+      let(:string) { 'hel!0' }
+
+      it { is_expected.to eq('letters: 3, digits: 1') }
     end
 
     context 'when argument is not string' do
-      it 'raises NoMethodError' do
-        expect { letter_digit_count(12) }.to raise_error NoMethodError
-      end
+      subject { -> { letter_digit_count(12) } }
+
+      it { is_expected.to raise_error NoMethodError }
     end
   end
 end

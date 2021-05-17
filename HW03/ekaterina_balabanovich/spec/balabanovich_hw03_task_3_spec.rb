@@ -15,56 +15,50 @@ RSpec.describe 'Task3' do
     LOGS
   end
 
-  let(:empty_logs) { '' }
-
-  let(:one_line_logs) do
-    '2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event'
-  end
-
   describe '#extract_core_log' do
+    subject { extract_core_log(logs) }
+
     context 'when logs are not empty' do
-      it 'returns lines that include "calling core"' do
-        first_extracted_line = extract_core_log(logs).lines.first.downcase
-        expect(first_extracted_line.include?('calling core')).to be true
+      let(:expected_output) do
+        <<~LOGS
+          2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+          2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
+        LOGS
       end
+
+      it { is_expected.to eq(expected_output) }
     end
 
     context 'when logs are empty' do
-      it 'returns an empty string' do
-        expect(extract_core_log(empty_logs)).to eq('')
-      end
+      let(:logs) { '' }
+
+      it { is_expected.to eq('') }
     end
 
     context 'when logs are not string' do
-      it 'raises NoMethodError' do
-        expect { extract_core_log(12) }.to raise_error NoMethodError
-      end
+      subject { -> { extract_core_log(12) } }
+
+      it { is_expected.to raise_error NoMethodError }
     end
   end
 
   describe '#duration_count' do
+    subject { duration_count(extract_core_log(logs)) }
+
     context 'when logs contain one line' do
-      it 'returns 0' do
-        expect(duration_count(one_line_logs)).to eq(0)
-      end
+      let(:logs) { '2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event' }
+
+      it { is_expected.to eq(0) }
     end
 
     context 'when logs contain more than one lines' do
-      it 'returns duration between events' do
-        expect(duration_count(extract_core_log(logs)).first).to eq(49.1)
-      end
+      it { is_expected.to eq([49.1]) }
     end
 
     context 'when logs are empty' do
-      it 'returns 0' do
-        expect(duration_count(empty_logs)).to eq(0)
-      end
-    end
+      let(:logs) { '' }
 
-    context 'when logs are not string' do
-      it 'raises NoMethodError' do
-        expect { duration_count(12) }.to raise_error NoMethodError
-      end
+      it { is_expected.to eq(0) }
     end
   end
 end
