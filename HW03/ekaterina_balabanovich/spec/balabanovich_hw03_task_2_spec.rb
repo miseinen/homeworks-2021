@@ -37,6 +37,26 @@ RSpec.describe 'Task2' do
       it { is_expected.to eq([]) }
     end
 
+    context 'when logs include POST messages in a different order' do
+      let(:logs) do
+        <<~LOGS
+          10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0498
+          POST /test/2/messages HTTP/1.1' 10.6.246.101 - - [23/Apr/2018:20:31:39 +0300]  200 48 0.0290
+          POST /test/2/messages HTTP/1.1' 10.6.246.101 - - [23/Apr/2018:20:31:39 +0300]  200 48 0.0290
+          10.6.246.101 - - [23/Apr/2018:20:31:39 +0300] 'POST /test/2/messages HTTP/1.1' 200 48 0.0290
+        LOGS
+      end
+
+      let(:expected_output) do
+        ['23/Apr/2018:20:30:39 +0300 FROM: 10.6.246.103 TO: /TEST/2/MESSAGES',
+         '23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES',
+         '23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES',
+         '23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES']
+      end
+
+      it { is_expected.to eq(expected_output) }
+    end
+
     context 'when logs are empty' do
       let(:logs) { '' }
 
