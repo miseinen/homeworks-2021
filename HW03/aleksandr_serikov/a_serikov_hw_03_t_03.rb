@@ -10,7 +10,14 @@ def task3(logs)
   end
   result = calculate_time_duration(times)
 
-  result.any? ? result : '0'
+  case result.size
+  when 0
+    '0'
+  when 1
+    result.first
+  else
+    result
+  end
 end
 
 def calculate_time_duration(times)
