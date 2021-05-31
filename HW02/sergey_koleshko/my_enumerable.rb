@@ -15,25 +15,34 @@ module MyEnumerable
 
   refine Array do
     def my_each
-      for i in 0...length
-        yield(self[i])
+      if block_given?
+        for i in 0...length
+          yield(self[i])
+        end
       end
+      self
     end
 
     def my_map
       temp = []
-      for i in 0...length
-        temp << yield(self[i])
+      if block_given?
+        for i in 0...length
+          temp << yield(self[i])
+        end
+        return temp
       end
-      temp
+      self
     end
 
     def my_select
       temp = []
-      for i in 0...length
-        temp << self[i] if yield(self[i])
+      if block_given?
+        for i in 0...length
+          temp << self[i] if yield(self[i])
+        end
+        return temp
       end
-      temp
+      self
     end
   end
 end
