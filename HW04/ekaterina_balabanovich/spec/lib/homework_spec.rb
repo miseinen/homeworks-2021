@@ -18,6 +18,13 @@ RSpec.describe Homework do
 
       it { is_expected.to have_attributes(expected_attributes) }
     end
+
+    context ':answers when first created' do
+      subject { described_class.new('', '').answers }
+      let(:expected_attribute_value) { [] }
+
+      it { is_expected.to eq(expected_attribute_value) }
+    end
   end
 
   describe '#solve' do
