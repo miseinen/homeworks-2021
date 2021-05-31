@@ -18,4 +18,13 @@ FactoryBot.define do
 
     initialize_with { new(title, description) }
   end
+
+  factory :member do
+    skip_create
+
+    name { 'John' }
+    surname { 'Doe' }
+
+    initialize_with { new(name, surname) }
+  end
 end
