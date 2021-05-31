@@ -9,4 +9,13 @@ FactoryBot.define do
 
     initialize_with { new(name, surname) }
   end
+
+  factory :homework do
+    skip_create
+
+    title { 'HW01' }
+    description { 'do it' }
+
+    initialize_with { new(title, description) }
+  end
 end
