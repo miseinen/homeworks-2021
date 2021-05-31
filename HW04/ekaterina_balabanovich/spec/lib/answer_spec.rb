@@ -13,7 +13,7 @@ RSpec.describe Answer do
       it { is_expected.to have_attributes(expected_attributes) }
     end
 
-    context 'when :student is empty and :answer is empty' do
+    context 'when attributes are epmty' do
       subject { described_class.new('', '') }
       let(:expected_attributes) { { student: '', answer: '' } }
 
