@@ -24,7 +24,7 @@ RSpec.describe Answer do
   describe '#show' do
     context 'when :student is "John Doe" and :answer is "my answer"' do
       let(:student) { create(:student) }
-      subject { -> {described_class.new(student, 'answer').show } }
+      subject { -> { described_class.new(student, 'answer').show } }
       let(:expected_output) { "Doe: answer\n" }
 
       it { is_expected.to output(expected_output).to_stdout }
