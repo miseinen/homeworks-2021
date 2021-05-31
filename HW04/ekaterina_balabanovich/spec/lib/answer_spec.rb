@@ -6,7 +6,7 @@ require_relative '../../lib/student'
 RSpec.describe Answer do
   describe 'attributes' do
     context 'when :student is "John" and :answer is "answer"' do
-      let(:student) { Student.new('John', 'Doe') }
+      let(:student) { create(:student) }
       subject { described_class.new(student, 'answer') }
       let(:expected_attributes) { { student: student, answer: 'answer' } }
 
@@ -23,7 +23,7 @@ RSpec.describe Answer do
 
   describe '#show' do
     context 'when :student is "John Doe" and :answer is "my answer"' do
-      let(:student) { Student.new('John', 'Doe') }
+      let(:student) { create(:student) }
       subject { -> {described_class.new(student, 'answer').show } }
       let(:expected_output) { "Doe: answer\n" }
 
