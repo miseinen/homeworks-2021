@@ -41,11 +41,6 @@ logs = <<~LOGS
   2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
   2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
   2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event
-  2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - Calling core with action: event
-  2018-04-23 17:18:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event
-  2018-04-23 17:19:22.4 ubuntu-xenial[14319] Debug - Calling core with action: event
-  2018-04-23 17:19:25.9 ubuntu-xenial[14319] Debug - inside docker_handle_event
-  2018-04-23 17:19:48.6 ubuntu-xenial[14319] Debug - Calling core with action: event
 LOGS
 
 puts task_3(logs)

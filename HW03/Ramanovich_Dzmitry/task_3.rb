@@ -7,9 +7,26 @@ def task_3(logs)
   lines = logs.split(/\n/)
   str = lines.select { |line| line.include?('Calling') }
   str.map { |line| line[TIME] }
-  str.empty? ? 0 : method(str)
+  check(str)
 end
 
-def method(str)
-  str.each_cons(2).map { |str_one, str_two| Time.parse(str_two) - Time.parse(str_one) }.join(',')
+private
+
+def zero(str)
+  '0'
+end
+
+def subtraction(str)
+  str.each_cons(2).map do |str_one, str_two|
+    Time.parse(str_two) - Time.parse(str_one)
+  end.join(',')
+end
+
+def check(str)
+  array = []
+  array << if str.empty?
+             zero(str)
+           else
+             subtraction(str)
+           end
 end
